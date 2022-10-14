@@ -1,0 +1,27 @@
+{
+  "name": "larex",
+  "version": "4.0.0",
+  "description": "v14 Register.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "Larex",
+  "license": "ISC",
+  "dependencies": {
+    "@discordjs/builders": "^1.0.0",
+    "common-tags": "^1.8.2",
+    "croxydb": "^0.0.7",
+    "discord.js": "^14.6.0",
+    "express": "^4.18.1",
+    "fs": "^0.0.1-security",
+    "http": "^0.0.1-security",
+    "moment": "^2.29.4",
+    "moment-duration-format": "^2.3.2",
+    "os": "^0.1.2"
+  },
+  "engines": {
+    "node": "16.x"
+  }
+}
