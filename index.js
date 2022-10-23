@@ -66,7 +66,7 @@ client.on("guildMemberAdd", async member => {
    client.channels.cache.get(kanal).send
    
    const hgg = new Discord.EmbedBuilder()
-   .setTitle(`Hoşgeldin!`)
+   .setTitle(`W A I S T O N E`)
    .setDescription(`<a:welcome:1030577723145465939> **Sunucuya Hoşgeldin!** ${member}\n\n<a:kristal:1030578043196022876> **Seninle Birlikte** \`${member.guild.memberCount}\` **Kişiyiz.**\n\n<a:dikkat:1030578141506326539> **Kayıt Kanalına İsim ve Yaşını Yazarak Kayıt Olabilirsin.**\n\n<a:staff:1030578443785605130> <@&${ids.rolYetkili}> **Seninle İlgileneceklerdir.**\n\n<a:wheels:1030579185988669491> **Hesabın** \`${kuruluş}\` **Tarihinde Kurulmuştur.**\n\n<a:kalp:1030579231169728563> **Sunucumuzda İyi Vakit Geçir.**`)
    .setColor("BLACK")
    client.channels.cache.get(kanal).send({embeds: [hgg]})

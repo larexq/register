@@ -1,10 +1,10 @@
 module.exports = {
 
-rolErkek: "",
-rolKız: "",
-rolKayıtsız: "",
-rolYetkili: "",
-kanalHosgeldin: "",
+rolErkek: "1019925112578920468",
+rolKız: "1019924834098090097",
+rolKayıtsız: "1019924480237244476",
+rolYetkili: "1024090899950608457",
+kanalHosgeldin: "1019925047697215579",
 tag: ""
 
 
