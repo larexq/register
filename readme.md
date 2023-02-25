@@ -1,8 +1,11 @@
-config.js dosyasına tokenini koy prefinixi ayarla.
-ids.js sayfasını doldur. (tag yoksa boş kalsın)
+# Discord Register Bot
 
-(🇮) Data silme komutunda kayıt data silmesi bakımda.
+- **config.js** dosyasından token ve prefixini ayarla.
+- **ids.js** sayfasını doldur.
+
+# Data silme komutunda kayıt data silmesi bakımda.
 
 Her türlü iletişim için discord : [lx?#0001](https://discord.com/users/752910734748549161)
+
 
 ![](https://img.shields.io/github/stars/larexq/register) ![](https://img.shields.io/github/forks/larexq/register) ![](https://img.shields.io/github/v/tag/larexq/register) ![](https://img.shields.io/github/issues/larexq/register)
