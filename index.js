@@ -3,6 +3,7 @@ const config = require("./config.js");
 const db = require("croxydb")
 const ids = require("./ids.js");
 const Discord = require("discord.js")
+
 const client = new Client({
   partials: [
     Partials.Message, // for message
@@ -39,20 +40,6 @@ require("./events/message.js")
 require("./events/ready.js")
 client.on("guildMemberAdd", async member => {
   const moment = require('moment')
-   let aylar = {
-           "01": "Ocak",
-           "02": "Şubat",
-           "03": "Mart",
-           "04": "Nisan",
-           "05": "Mayıs",
-           "06": "Haziran",
-           "07": "Temmuz",
-           "08": "Ağustos",
-           "09": "Eylül",
-           "10": "Ekim",
-           "11": "Kasım",
-           "12": "Aralık"
-   }
   
    let endAt = member.user.createdAt
    let gün = moment(new Date(endAt).toISOString()).format('DD')
@@ -60,15 +47,59 @@ client.on("guildMemberAdd", async member => {
    let yıl =  moment(new Date(endAt).toISOString()).format('YYYY')
    let saat = moment(new Date(endAt).toISOString()).format('HH:mm')
    let kuruluş = `${gün} ${ay} ${yıl} ${saat}`
-   let kanal = ids.kanalHosgeldin
-   let kayıtlı = ids.rolKayıtsız
+   let kanal = ids.channels.kanalHosgeldin
+   let kayıtlı = ids.roles.rolKayıtsız
+   const wlc = ids.emojis.welcome
    member.guild.members.cache.get(member.id).roles.add(kayıtlı)
    client.channels.cache.get(kanal).send
    
    const hgg = new Discord.EmbedBuilder()
-   .setTitle(`W A I S T O N E`)
-   .setDescription(`<a:welcome:1030577723145465939> **Sunucuya Hoşgeldin!** ${member}\n\n<a:kristal:1030578043196022876> **Seninle Birlikte** \`${member.guild.memberCount}\` **Kişiyiz.**\n\n<a:dikkat:1030578141506326539> **Kayıt Kanalına İsim ve Yaşını Yazarak Kayıt Olabilirsin.**\n\n<a:staff:1030578443785605130> <@&${ids.rolYetkili}> **Seninle İlgileneceklerdir.**\n\n<a:wheels:1030579185988669491> **Hesabın** \`${kuruluş}\` **Tarihinde Kurulmuştur.**\n\n<a:kalp:1030579231169728563> **Sunucumuzda İyi Vakit Geçir.**`)
+   .setTitle(`Sunucumuza Hoşgeldin!`)
+   .setDescription(`${wlc.welcome1} **Sunucuya Hoşgeldin!** ${member}\n\n${wlc.welcome2} **Seninle Birlikte** \`${member.guild.memberCount}\` **Kişiyiz.**\n\n${wlc.welcome3} **Kayıt Kanalına İsim ve Yaşını Yazarak Kayıt Olabilirsin.**\n\n${wlc.welcome4} <@&${ids.roles.rolYetkili}> **Seninle İlgileneceklerdir.**\n\n${wlc.welcome5} **Hesabın** \`${kuruluş}\` **Tarihinde Kurulmuştur.**\n\n${wlc.welcome5} **Sunucumuzda İyi Vakit Geçir.**`)
+   .setTimestamp()
    .setColor("BLACK")
    client.channels.cache.get(kanal).send({embeds: [hgg]})
 })
+
+client.on("interactionCreate", async interaction => {
+  if (!interaction.isButton()) return;
+  let message = await interaction.channel.messages.fetch(interaction.message.id)  
+ 
+ 
+  if(interaction.customId == "kayitdata") {
+    await interaction.deferReply();
+    const notdata = new Discord.EmbedBuilder()
+    .setColor("ff0000")
+    .setDescription(`Kayıt Dataları Siliniyor 📩`)
+
+    const silindi = new Discord.EmbedBuilder()
+    .setColor("00ff17")
+    .setDescription(`Kayıt Dataları Silindi ✅`)
+
+    db.delete(`erkek_${message.author.id}`)
+    db.delete(`kız_${message.author.id}`)
+    db.delete(`toplam_${message.author.id}`)
+
+   return interaction.followUp({embeds: [notdata]}).then(x => setTimeout(() => x.edit({ embeds: [silindi]}), 5000))
+  }
+
+
+  if(interaction.customId == "isimdata") {
+    await interaction.deferReply();
+    const notdata = new Discord.EmbedBuilder()
+    .setColor("ff0000")
+    .setDescription(`İsim Dataları Siliniyor 📩`)
+
+    const silindi = new Discord.EmbedBuilder()
+    .setColor("00ff17")
+    .setDescription(`İsim Dataları Silindi ✅`)
+    
+    const isimdataa = db.get(`isim.${message.guild.id}`)
+    db.delete(`isim.${message.guild.id}`)
+
+    if(!isimdataa) return interaction.followUp({ content: `Kayıtlı isim datası bulunamadı.`})
+   return interaction.followUp({embeds: [notdata]}).then(x => setTimeout(() => x.edit({ embeds: [silindi]}), 5000))
+  }
+})
+
 client.login(config.token)

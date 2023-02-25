@@ -1,8 +1,18 @@
 const Discord = require("discord.js")
 const db = require("croxydb")
-exports.run = async(client, message) => {
-  let kullanıcı = message.mentions.members.first()
+const ids = require("../ids.js")
+const emoji = ids.emojis.infoemoji
+const carpi = ids.emojis.carpi
+const yetkili = ids.roles.rolYetkili
 
+exports.run = async(client, message) => {
+  
+  const yetki = new Discord.EmbedBuilder()
+.setDescription(`${message.author} **| Bu Komutu Kullanabilmek İçin <@&${ids.roles.rolYetkili}> Rolüne Sahip Olman Gerekiyor.** ${carpi}`)
+.setColor("BLACK")
+
+  if(!message.member.roles.cache.has(yetkili)) return message.reply({ embeds: [yetki] })
+  let kullanıcı = message.mentions.members.first()
 
   if(!kullanıcı) {
     let erkekPuan = db.fetch(`erkek_${message.author.id}`);
@@ -18,9 +28,9 @@ exports.run = async(client, message) => {
      const kayıtlar1 = new Discord.EmbedBuilder()
      .setTitle("Kayıt Sayısı")
      .setThumbnail(`${message.author.displayAvatarURL({ dynamic: true })}`)
-     .setDescription(`**<a:hype:1030583980719865909> | Toplam Kayıtların:** \`${toplamPuan}\`
-     **<a:hype:1030583980719865909> | Toplam Erkek Kayıtların:** \`${erkekPuan}\`
-     **<a:hype:1030583980719865909> | Toplam Kız Kayıtların:** \`${kızPuan}\``)
+     .setDescription(`**${emoji} | Toplam Kayıtların:** \`${toplamPuan}\`
+     **${emoji} | Toplam Erkek Kayıtların:** \`${erkekPuan}\`
+     **${emoji} | Toplam Kız Kayıtların:** \`${kızPuan}\``)
      .setFooter({ text: `Sorgulayan: ${message.author.tag}`, iconURL: `${message.author.displayAvatarURL({ dynamic: true })}` })
      .setColor("BLACK")
      message.reply({embeds: [kayıtlar1]})
@@ -40,10 +50,10 @@ exports.run = async(client, message) => {
 
      const kayıtlar1 = new Discord.EmbedBuilder()
      .setTitle("Kayıt Sayısı")
-     .setThumbnail(`${kullanıcı.id.displayAvatarURL({ dynamic: true })}`)
-     .setDescription(`**<a:hype:1030583980719865909> | Toplam Kayıtların:** \`${toplamPuan1}\`
-     **<a:hype:1030583980719865909> | Toplam Erkek Kayıtların:** \`${erkekPuan1}\`
-     **<a:hype:1030583980719865909> | Toplam Kız Kayıtların:** \`${kızPuan1}\``)
+     .setThumbnail(`${kullanıcı.displayAvatarURL({ dynamic: true })}`)
+     .setDescription(`**${emoji} | Toplam Kayıtların:** \`${toplamPuan1}\`
+     **${emoji} | Toplam Erkek Kayıtların:** \`${erkekPuan1}\`
+     **${emoji} | Toplam Kız Kayıtların:** \`${kızPuan1}\``)
      .setFooter({ text: `Sorgulayan: ${message.author.tag}`, iconURL: `${message.author.displayAvatarURL({ dynamic: true })}` })
      .setColor("BLACK")
      message.reply({embeds: [kayıtlar1]})

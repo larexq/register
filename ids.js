@@ -1,11 +1,40 @@
 module.exports = {
 
-rolErkek: "1019925112578920468",
-rolKız: "1019924834098090097",
-rolKayıtsız: "1019924480237244476",
-rolYetkili: "1024090899950608457",
-kanalHosgeldin: "1019925047697215579",
-tag: ""
+roles: {
+rolErkek: "",
+rolKız: "",
+rolKayıtsız: "",
+rolYetkili: ""
+},
 
+channels: {
+kanalHosgeldin: ""
+},
+
+emojis: {
+yardimemoji: "",
+infoemoji: "",
+carpi: "",
+tik: "",
+
+basarili: {
+basarili1: "",
+basarili2: "",
+basarili3: "",
+basarili4: "",
+basarili5: ""
+},
+
+welcome: {
+welcome1: "",
+welcome2: "",
+welcome3: "",
+welcome4: "",
+welcome5: "",
+welcome6: ""
+}
+},
+
+tag: ""
 
 }

@@ -1,9 +1,14 @@
-const {EmbedBuilder} = require("discord.js");
-const Discord = require("discord.js")
+const { EmbedBuilder, PermissionsBitField  } = require("discord.js");
 
 exports.run = async (client, message, args) => {
 
-message.reply(`**${client.ws.ping}** ms`)
+   const embed = new EmbedBuilder()
+   .setColor("BLACK")
+   .setDescription(`${client.ws.ping} ms`) 
+   .setFooter({ text: `İsteyen: ${message.author.tag}`, iconURL: `${message.author.displayAvatarURL({ dynamic: true })}` })    
+   .setTimestamp()  
+
+   return message.reply({ embeds: [embed] })
 
 };
 exports.conf = {
