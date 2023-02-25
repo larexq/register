@@ -3,7 +3,11 @@
 - **config.js** dosyasından token ve prefixini ayarla.
 - **ids.js** sayfasını doldur.
 
-# Data silme komutunda kayıt data silmesi bakımda.
+# Bilgi
+
+- **datasil.js** komutundaki kayıt dataları silmede bakım vardır.
+
+# İletişim
 
 Her türlü iletişim için discord : [lx?#0001](https://discord.com/users/752910734748549161)
 
